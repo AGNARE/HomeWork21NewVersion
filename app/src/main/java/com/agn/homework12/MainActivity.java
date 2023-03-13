@@ -1,0 +1,41 @@
+package com.agn.homework12;
+
+import static com.agn.homework12.R.id.mainName;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.EditText;
+
+import com.google.android.material.button.MaterialButton;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText name;
+    private MaterialButton next;
+
+    @SuppressLint({"MissingInflatedId", "CutPasteId"})
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initID();
+        initListener();
+    }
+
+    private void initListener() {
+        next.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            String name1 = ((EditText) findViewById(R.id.mainName)).getText().toString();
+            intent.putExtra("name", name1);
+            startActivity(intent);
+        });
+    }
+
+    private void initID() {
+        setContentView(R.layout.activity_main);
+        name = findViewById(mainName);
+        next = findViewById(R.id.mainNext);
+    }
+}
